@@ -39,6 +39,16 @@ class ViewController: UIViewController {
         let vc5 = UINavigationController(rootViewController: FifthViewController())
         tabBarVC.setViewControllers([vc1, vc2, vc3, vc4, vc5], animated: false)
         tabBarVC.modalPresentationStyle = .fullScreen
+        
+        guard let items = tabBarVC.tabBar.items else {
+            return
+        }
+        let images = ["house", "bell", "person.circle", "star", "gear"]
+        
+        for x in 0..<items.count {
+            items[x].badgeValue = "1"
+            items[x].image = UIImage(systemName: images[x])
+        }
         present(tabBarVC,animated: true)
     }
 
