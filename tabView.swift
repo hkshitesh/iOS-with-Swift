@@ -32,11 +32,11 @@ class ViewController: UIViewController {
     }
     @objc func didTapButton(){
         let tabBarVC = UITabBarController()
-        let vc1 = FirstViewController()
-        let vc2 = SecondViewController()
-        let vc3 = ThirdViewController()
-        let vc4 = FouthViewController()
-        let vc5 = FifthViewController()
+        let vc1 = UINavigationController(rootViewController: FirstViewController())
+        let vc2 = UINavigationController(rootViewController: SecondViewController())
+        let vc3 = UINavigationController(rootViewController: ThirdViewController())
+        let vc4 = UINavigationController(rootViewController: FourthViewController())
+        let vc5 = UINavigationController(rootViewController: FifthViewController())
         tabBarVC.setViewControllers([vc1, vc2, vc3, vc4, vc5], animated: false)
         tabBarVC.modalPresentationStyle = .fullScreen
         present(tabBarVC,animated: true)
@@ -48,6 +48,7 @@ class FirstViewController: UIViewController{
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .red
+        title = "Home"
     }
 }
 
@@ -55,6 +56,7 @@ class SecondViewController: UIViewController{
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .green
+        title = "Contact"
     }
 }
 
@@ -62,13 +64,15 @@ class ThirdViewController: UIViewController{
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .gray
+        title = "Help"
     }
 }
 
-class FouthViewController: UIViewController{
+class FourthViewController: UIViewController{
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .yellow
+        title = "About"
     }
 }
 
@@ -76,6 +80,7 @@ class FifthViewController: UIViewController{
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .orange
+        title = "Settings"
     }
 }
 
