@@ -1,65 +1,82 @@
-// Calculator.swift
 
-import Foundation
+import UIKit
 
-class Calculator {
-    func add(_ a:Int, _ b:Int)->Int{
-        return a+b
-    }
-    func substract( _ a:Int, _ b:Int)->Int{
-        return a-b
+class ViewController: UIViewController {
+    
+    public var lengthTextField: UITextField!
+    public var widthTextField: UITextField!
+    public var calCulateButton: UIButton!
+    public var resultLabel: UILabel!
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        cofigureUI()
+        // Do any additional setup after loading the view.
     }
     
-    func multiply( _ a:Int, _ b:Int)->Int{
-        return a*b
-    }
-    
-    func division( _ a:Int, _ b:Int)->Int{
-        return a/b
-    }
-}
-
-
-//Unit Testing Class Code
-
-import XCTest
-@testable import DemoUnitTesting
-
-final class DemoUnitTestingTests: XCTestCase {
-    
-    var calculator: Calculator!
-
-    override func setUpWithError() throws {
-        calculator = Calculator()
-    }
-
-    override func tearDownWithError() throws {
+    public func cofigureUI(){
         
-        calculator = nil
+        //Length Text Filed
+        
+        lengthTextField = UITextField()
+        lengthTextField.placeholder = "Enter length"
+        lengthTextField.borderStyle = .roundedRect
+        lengthTextField.translatesAutoresizingMaskIntoConstraints = false
+        lengthTextField.accessibilityIdentifier = "LengthTextField"
+        view.addSubview(lengthTextField)
+        
+        // Width Text Filed
+        
+        widthTextField = UITextField()
+        widthTextField.placeholder = "Enter width"
+        widthTextField.borderStyle = .roundedRect
+        widthTextField.translatesAutoresizingMaskIntoConstraints = false
+        widthTextField.accessibilityIdentifier = "WidthTextField"
+        view.addSubview(widthTextField)
+        
+        //Calculate Button
+        
+        calCulateButton = UIButton(type: .system)
+        calCulateButton.setTitle("Calculate", for: .normal)
+        calCulateButton.addTarget(self, action: #selector(calculateButtonTapped), for: .touchUpInside)
+        calCulateButton.translatesAutoresizingMaskIntoConstraints = false
+        calCulateButton.accessibilityIdentifier = "CalculateButton"
+        view.addSubview(calCulateButton)
+        
+        // Result Label
+        
+        resultLabel = UILabel()
+        resultLabel.textAlignment = .center
+        resultLabel.translatesAutoresizingMaskIntoConstraints = false
+        resultLabel.accessibilityIdentifier = "ResultLabel"
+        view.addSubview(resultLabel)
+        
+        //Setup Constraints
+        NSLayoutConstraint.activate([
+                    lengthTextField.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+                    lengthTextField.topAnchor.constraint(equalTo: view.topAnchor, constant: 100),
+                    lengthTextField.widthAnchor.constraint(equalToConstant: 200),
+                    widthTextField.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+                    widthTextField.topAnchor.constraint(equalTo: lengthTextField.bottomAnchor, constant: 20),
+                    widthTextField.widthAnchor.constraint(equalToConstant: 200),
+                    calCulateButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+                    calCulateButton.topAnchor.constraint(equalTo: widthTextField.bottomAnchor, constant: 20),
+                    resultLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+                    resultLabel.topAnchor.constraint(equalTo: calCulateButton.bottomAnchor, constant: 20)
+                ])
     }
-    
-    func testAddition() throws {
-        XCTAssertEqual(calculator.add(1, 1), 2)
-        XCTAssertEqual(calculator.add(-1, -1), -2)
-        XCTAssertEqual(calculator.add(10, 10), 20)
+    @objc public func calculateButtonTapped(){
+        guard let lengthText = lengthTextField.text, !lengthText.isEmpty,
+              let widthText = widthTextField.text, !widthText.isEmpty,
+              let length = Double(lengthText),
+              let width = Double(widthText) else {
+            resultLabel.text = "Invalid input"
+            return
+        }
+        
+        let area = length * width
+        resultLabel.text = "Area: \(area)"
+            
     }
-    
-    func testSubstraction() throws {
-        XCTAssertEqual(calculator.substract(2, 1), 1)
-        XCTAssertEqual(calculator.substract(-1, -1), 0)
-        XCTAssertEqual(calculator.substract(10, 5), 5)
-    }
-    
-    func testMultiply() throws {
-        XCTAssertEqual(calculator.multiply(10, 2), 20)
-        XCTAssertEqual(calculator.multiply(-1, -1), 1)
-        XCTAssertEqual(calculator.multiply(10, 10), 100)
-    }
-    
-    func testDivisiob() throws {
-        XCTAssertEqual(calculator.division(1, 1), 1)
-        XCTAssertEqual(calculator.division(4, 2), 2)
-        XCTAssertEqual(calculator.division(100, 10), 10)
-    }
-
 }
+
