@@ -188,3 +188,25 @@ class ViewController: UIViewController {
 
 
 
+//Localiztion
+
+import UIKit
+
+class ViewController: UIViewController {
+
+    @IBOutlet weak var button: UIButton!
+    @IBOutlet weak var label: UILabel!
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        // Do any additional setup after loading the view.
+        label.text = NSLocalizedString("hello", comment: "Hello, World")
+        button.setTitle(NSLocalizedString("button_title", comment: "Press Me"), for: .normal)
+    }
+
+    @IBAction func buttonTapped(_ sender: UIButton) {
+        label.text = NSLocalizedString("button_title", comment: "Button Prssed")
+    }
+
+}
+
+
