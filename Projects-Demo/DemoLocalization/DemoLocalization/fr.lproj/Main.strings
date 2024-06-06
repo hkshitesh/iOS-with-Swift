@@ -1,0 +1,9 @@
+
+/* Class = "UILabel"; text = "Hello World"; ObjectID = "Web-lX-ixc"; */
+"Web-lX-ixc.text" = "Hello World";
+
+/* Class = "UIButton"; configuration.title = "Press Me"; ObjectID = "znl-gC-2xd"; */
+"znl-gC-2xd.configuration.title" = "Press Me";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "znl-gC-2xd"; */
+"znl-gC-2xd.normalTitle" = "Button";
