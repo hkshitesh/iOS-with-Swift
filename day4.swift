@@ -210,3 +210,11 @@ class ViewController: UIViewController {
 }
 
 
+
+"hello" = "Hello, World!";
+"button_title" = "Press Me";
+
+
+"hello" = "¡Hola, Mundo!";
+"button_title" = "Presióname";
+
